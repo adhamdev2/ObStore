@@ -1,22 +1,22 @@
-import crypto from "crypto";
+const crypto = require("crypto");
 
 const BASE32_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
 
-function base32Decode(encoded: string): Buffer {
+function base32Decode(encoded) {
   let bits = "";
   for (const char of encoded.toUpperCase().replace(/=+$/, "")) {
     const val = BASE32_ALPHABET.indexOf(char);
     if (val === -1) continue;
     bits += val.toString(2).padStart(5, "0");
   }
-  const bytes: number[] = [];
+  const bytes = [];
   for (let i = 0; i + 8 <= bits.length; i += 8) {
     bytes.push(parseInt(bits.substring(i, i + 8), 2));
   }
   return Buffer.from(bytes);
 }
 
-function generateCode(secret: string, counter: number): string {
+function generateCode(secret, counter) {
   const key = base32Decode(secret);
   const buffer = Buffer.alloc(8);
   buffer.writeBigInt64BE(BigInt(counter));
@@ -36,17 +36,22 @@ function generateCode(secret: string, counter: number): string {
   return code.toString().padStart(6, "0");
 }
 
-export function verifyTOTP(token: string, secret: string): boolean {
+function verifyTOTP(token, secret) {
   const timeStep = 30;
   const currentCounter = Math.floor(Date.now() / 1000 / timeStep);
 
   for (let i = -2; i <= 2; i++) {
     const code = generateCode(secret, currentCounter + i);
+    console.log(`Window ${i}: ${code}`);
     if (code === token) return true;
   }
   return false;
 }
 
-export function getTOTPUri(secret: string, label = "OB Admin"): string {
-  return `otpauth://totp/${encodeURIComponent(label)}?secret=${secret}&issuer=OBAdmin&algorithm=SHA1&digits=6&period=30`;
-}
+const secret = "JVLWI3DMEBZGQ3LBNZSSA2LOMNXWY3DF";
+console.log("Testing secret:", secret);
+const timeStep = 30;
+const currentCounter = Math.floor(Date.now() / 1000 / timeStep);
+const currentCode = generateCode(secret, currentCounter);
+console.log("Current expected code:", currentCode);
+console.log("Verify result:", verifyTOTP(currentCode, secret));

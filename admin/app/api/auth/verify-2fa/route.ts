@@ -27,11 +27,9 @@ export async function POST(request: NextRequest) {
 
     let secretToUse = "";
     
-    // Check if master owner
     if (payload.email.toLowerCase() === config.email.toLowerCase()) {
       secretToUse = config["2fa_secret"];
     } else {
-      // Additional user
       const user = findUserByEmail(payload.email);
       if (!user) {
         return NextResponse.json(

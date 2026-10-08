@@ -11,14 +11,12 @@ export async function POST(request: NextRequest) {
     let isValidUser = false;
     let requires2fa = config["2fa"];
 
-    // Check if master owner
     if (
       email.toLowerCase() === config.email.toLowerCase() &&
       password === config.password
     ) {
       isValidUser = true;
     } else {
-      // Check additional users
       const user = findUserByEmail(email);
       if (user && user.password === password) {
         isValidUser = true;
