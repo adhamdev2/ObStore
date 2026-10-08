@@ -44,7 +44,8 @@ export function verifyTOTP(token: string, secret: string): boolean {
   const timeStep = 30;
   const currentCounter = Math.floor(Date.now() / 1000 / timeStep);
 
-  for (let i = -1; i <= 1; i++) {
+  // Check current, and 2 previous/next windows to allow for up to 60s of clock skew
+  for (let i = -2; i <= 2; i++) {
     const code = generateCode(secret, currentCounter + i);
     if (code === token) return true;
   }
