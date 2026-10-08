@@ -34,7 +34,7 @@ export async function PUT(
       );
     }
 
-    users[userIndex].totp_secret = secret;
+    users[userIndex].twofa_secret = secret;
     saveUsers(users);
 
     return NextResponse.json({ success: true });
