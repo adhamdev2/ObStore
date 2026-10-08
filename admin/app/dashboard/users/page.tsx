@@ -31,12 +31,21 @@ export default function UsersPage() {
   
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [currentUserEmail, setCurrentUserEmail] = useState("");
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const OWNER_EMAIL = "hi@adham.business";
 
   useEffect(() => {
     fetchUsers();
+    fetch("/api/auth/check")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.authenticated) {
+          setCurrentUserEmail(data.email);
+        }
+      })
+      .catch(() => {});
   }, []);
 
   const fetchUsers = async () => {
@@ -358,8 +367,9 @@ export default function UsersPage() {
                       {new Date(user.created_at).toLocaleDateString("ar-SA")}
                     </td>
                     <td className="px-6 py-4">
-                      {user.email.toLowerCase() !== OWNER_EMAIL.toLowerCase() && (
-                        <div className="flex items-center gap-1">
+                      <div className="flex items-center gap-1">
+                        {(user.email.toLowerCase() !== OWNER_EMAIL.toLowerCase() ||
+                          currentUserEmail.toLowerCase() === OWNER_EMAIL.toLowerCase()) && (
                           <button
                             onClick={() => openTwoFaModal(user)}
                             className="p-2 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-colors"
@@ -367,22 +377,27 @@ export default function UsersPage() {
                           >
                             <QrCode className="w-4 h-4" />
                           </button>
-                          <button
-                            onClick={() => openEditModal(user)}
-                            className="p-2 text-muted-foreground hover:text-primary hover:bg-blue-400/10 rounded-lg transition-colors"
-                            title="تعديل"
-                          >
-                            <Edit2 className="w-4 h-4" />
-                          </button>
-                          <button
-                            onClick={() => handleDeleteUser(user.id, user.email)}
-                            className="p-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg transition-colors"
-                            title="حذف"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </div>
-                      )}
+                        )}
+                        
+                        {user.email.toLowerCase() !== OWNER_EMAIL.toLowerCase() && (
+                          <>
+                            <button
+                              onClick={() => openEditModal(user)}
+                              className="p-2 text-muted-foreground hover:text-primary hover:bg-blue-400/10 rounded-lg transition-colors"
+                              title="تعديل"
+                            >
+                              <Edit2 className="w-4 h-4" />
+                            </button>
+                            <button
+                              onClick={() => handleDeleteUser(user.id, user.email)}
+                              className="p-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg transition-colors"
+                              title="حذف"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </>
+                        )}
+                      </div>
                     </td>
                   </tr>
                 ))}
