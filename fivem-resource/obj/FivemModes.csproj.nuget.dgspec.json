@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\AW-PROJECTS\\fivemModes\\fivem-resource\\FivemModes.csproj": {}
+  },
+  "projects": {
+    "D:\\AW-PROJECTS\\fivemModes\\fivem-resource\\FivemModes.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\AW-PROJECTS\\fivemModes\\fivem-resource\\FivemModes.csproj",
+        "projectName": "FivemModes",
+        "projectPath": "D:\\AW-PROJECTS\\fivemModes\\fivem-resource\\FivemModes.csproj",
+        "packagesPath": "D:\\dotnet-temp\\nuget",
+        "outputPath": "D:\\AW-PROJECTS\\fivemModes\\fivem-resource\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "D:\\dotnet-temp\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net45"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net45": {
+            "targetAlias": "net45",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net45": {
+          "targetAlias": "net45",
+          "dependencies": {
+            "CitizenFX.Core": {
+              "target": "Package",
+              "version": "[1.3.0, )"
+            },
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "runtimeIdentifierGraphPath": "D:\\dotnet\\sdk\\8.0.425\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

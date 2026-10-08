@@ -1,0 +1,9 @@
+# admin
+
+node_modules/
+.next/
+out/
+build/
+*.tsbuildinfo
+next-env.d.ts
+.env*.local

@@ -1,0 +1,49 @@
+{
+  "name": "ob",
+  "productName": "ob",
+  "version": "1.0.76",
+  "type": "commonjs",
+  "author": "www.adham.business",
+  "description": "ob fivem mods",
+  "main": "./build/main.js",
+  "config": {
+    "forge": "./forge.config.cjs"
+  },
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "npm run clean && npm run build && npx electron-forge make --platform win32",
+    "publish": "node publish.js",
+    "publish:patch": "node publish.js patch",
+    "publish:minor": "node publish.js minor",
+    "publish:major": "node publish.js major",
+    "publish:local": "node publish.js patch",
+    "stop": "taskkill /F /T /IM ob.exe /IM electron.exe /FI \"STATUS eq RUNNING\" >nul 2>&1 || exit 0",
+    "clean": "rimraf out",
+    "premake": "npm run stop",
+    "force-clean": "npm run stop && powershell -Command \"$ErrorActionPreference = 'SilentlyContinue'; Remove-Item -Path out -Recurse -Force\"",
+    "build": "tsc -p tsconfig.json",
+    "postbuild": "node -e \"require('fs').copyFileSync('splash.html', 'build/splash.html');\""
+  },
+  "dependencies": {
+    "dotenv": "^18.0.4",
+    "electron-log": "^5.4.4",
+    "electron-squirrel-startup": "^1.0.1",
+    "electron-updater": "^6.8.9",
+    "tslib": "^2.8.1",
+    "ws": "^8.21.3"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^7.5.0",
+    "@electron-forge/maker-squirrel": "^7.5.0",
+    "@electron-forge/maker-zip": "^7.5.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.5.0",
+    "@types/node": "^22.0.0",
+    "@types/ws": "^8.18.1",
+    "electron": "^41.0.3",
+    "electron-builder": "^25.1.8",
+    "form-data": "^4.0.6",
+    "node-fetch": "^2.7.0",
+    "typescript": "^5.5.0"
+  }
+}

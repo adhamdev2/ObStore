@@ -1,0 +1,12 @@
+D:\AW-PROJECTS\fivemModes\fivem-resource\obj\Release\FivemModes.csproj.AssemblyReference.cache
+D:\AW-PROJECTS\fivemModes\fivem-resource\obj\Release\FivemModes.GeneratedMSBuildEditorConfig.editorconfig
+D:\AW-PROJECTS\fivemModes\fivem-resource\obj\Release\FivemModes.AssemblyInfoInputs.cache
+D:\AW-PROJECTS\fivemModes\fivem-resource\obj\Release\FivemModes.AssemblyInfo.cs
+D:\AW-PROJECTS\fivemModes\fivem-resource\obj\Release\FivemModes.csproj.CoreCompileInputs.cache
+D:\AW-PROJECTS\fivemModes\fivem-resource\obj\Release\FivemModes.sourcelink.json
+D:\AW-PROJECTS\fivemModes\fivem-resource\client\FivemModes.dll
+D:\AW-PROJECTS\fivemModes\fivem-resource\client\FivemModes.pdb
+D:\AW-PROJECTS\fivemModes\fivem-resource\client\CitizenFX.Core.dll
+D:\AW-PROJECTS\fivemModes\fivem-resource\obj\Release\FivemModes.csproj.Up2Date
+D:\AW-PROJECTS\fivemModes\fivem-resource\obj\Release\FivemModes.dll
+D:\AW-PROJECTS\fivemModes\fivem-resource\obj\Release\FivemModes.pdb

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OB Store</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      user-select: none;
+      -webkit-app-region: drag;
+    }
+
+    /* Ambient glow */
+    .glow-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(115,20,224,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Logo */
+    .logo-wrap {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo-ring {
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #7314e0 0%, #4a0fa8 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 40px rgba(115,20,224,0.5), 0 0 80px rgba(115,20,224,0.2);
+      animation: logo-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes logo-pulse {
+      0%, 100% { box-shadow: 0 0 40px rgba(115,20,224,0.5), 0 0 80px rgba(115,20,224,0.2); }
+      50%       { box-shadow: 0 0 60px rgba(115,20,224,0.8), 0 0 120px rgba(115,20,224,0.35); }
+    }
+
+    .logo-text {
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: #fff;
+    }
+
+    .brand {
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* Progress bar */
+    .progress-wrap {
+      position: absolute;
+      bottom: 32px;
+      left: 0; right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .progress-bar-bg {
+      width: 200px;
+      height: 2px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #7314e0, #a855f7);
+      border-radius: 999px;
+      transition: width 0.3s ease;
+      box-shadow: 0 0 8px rgba(115,20,224,0.8);
+    }
+
+    .status-text {
+      font-size: 10px;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* Version */
+    .version {
+      position: absolute;
+      bottom: 14px;
+      right: 18px;
+      font-size: 9px;
+      color: rgba(255,255,255,0.12);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-bg"></div>
+
+  <div class="logo-wrap">
+    <div class="logo-ring">
+      <span class="logo-text">OB</span>
+    </div>
+    <span class="brand">OB Store</span>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="bar"></div>
+    </div>
+    <span class="status-text" id="status">Initializing...</span>
+  </div>
+
+  <span class="version" id="version"></span>
+
+  <script>
+    const bar    = document.getElementById('bar');
+    const status = document.getElementById('status');
+    const ver    = document.getElementById('version');
+
+    // Receive progress from main process via ipcRenderer exposed on window
+    if (window.splashBridge) {
+      window.splashBridge.onProgress((data) => {
+        bar.style.width    = data.progress + '%';
+        status.textContent = data.message || 'Loading...';
+        if (data.version) ver.textContent = 'v' + data.version;
+      });
+    } else {
+      // Fallback animation when bridge not yet ready
+      let p = 0;
+      const msgs = ['Initializing...', 'Loading modules...', 'Almost ready...'];
+      const iv = setInterval(() => {
+        p = Math.min(p + Math.random() * 12, 90);
+        bar.style.width = p + '%';
+        status.textContent = msgs[Math.floor(p / 35)] || 'Almost ready...';
+        if (p >= 90) clearInterval(iv);
+      }, 200);
+    }
+  </script>
+</body>
+</html>

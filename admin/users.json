@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "id": "a223b5b4-b8cc-4f7a-8948-becb23039cb2",
+      "email": "manager@ob1.store",
+      "password": "!ob1r22ob%",
+      "twofa_secret": "T6XRCP67YH67EKKNCIOGT6XRCP67YH67",
+      "created_at": "2026-10-03T19:40:48.844Z"
+    }
+  ]
+}

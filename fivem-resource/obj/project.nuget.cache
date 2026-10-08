@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "GzSY/zoEd6I=",
+  "success": true,
+  "projectFilePath": "D:\\AW-PROJECTS\\fivemModes\\fivem-resource\\FivemModes.csproj",
+  "expectedPackageFiles": [
+    "D:\\dotnet-temp\\nuget\\citizenfx.core\\1.3.0\\citizenfx.core.1.3.0.nupkg.sha512",
+    "D:\\dotnet-temp\\nuget\\microsoft.netframework.referenceassemblies\\1.0.3\\microsoft.netframework.referenceassemblies.1.0.3.nupkg.sha512",
+    "D:\\dotnet-temp\\nuget\\microsoft.netframework.referenceassemblies.net45\\1.0.3\\microsoft.netframework.referenceassemblies.net45.1.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

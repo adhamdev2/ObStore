@@ -1,0 +1,15 @@
+node_modules/
+dist/
+build/
+out/
+.react-router/
+test/
+package-lock.json
+api/data/app.exe
+.next
+api/data/plugins/mods/*
+api/data/plugins/versions/*
+api/data/plugins/plugins/*
+api/data/codes.json
+api/data/codes_claims.json
+api/data/users.json*.zip
