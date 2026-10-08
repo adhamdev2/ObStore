@@ -25,6 +25,11 @@ const navItems = [
     href: "/dashboard/app-users",
     icon: MonitorSmartphone,
   },
+  {
+    name: "التحكم في الوصول",
+    href: "/dashboard/access-control",
+    icon: Shield,
+  },
 ];
 
 interface SidebarProps {
@@ -47,7 +52,6 @@ export default function Sidebar({ email }: SidebarProps) {
 
   return (
     <aside className="fixed top-0 left-0 h-screen w-[260px] bg-card border-r border-border flex flex-col z-50">
-      {/* Brand */}
       <div className="px-5 h-16 flex items-center gap-3 border-b border-border">
         <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
           <Shield className="w-5 h-5 text-primary-foreground" />
@@ -58,7 +62,6 @@ export default function Sidebar({ email }: SidebarProps) {
         </div>
       </div>
 
-      {/* Navigation */}
       <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
         <p className="px-3 mb-3 text-[11px] font-medium text-muted-foreground uppercase tracking-wider">
           القائمة
@@ -89,7 +92,6 @@ export default function Sidebar({ email }: SidebarProps) {
         })}
       </nav>
 
-      {/* User Info */}
       <div className="px-3 pb-4 mt-auto">
         <div className="px-3 py-3 rounded-lg bg-muted border border-border">
           <p className="text-[13px] text-foreground truncate">{email}</p>
