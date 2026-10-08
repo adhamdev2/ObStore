@@ -51,7 +51,6 @@ export async function PUT(
       );
     }
 
-    // Check if new email is already taken by another user
     if (
       email.toLowerCase() !== users[userIndex].email.toLowerCase() &&
       findUserByEmail(email)
@@ -62,7 +61,6 @@ export async function PUT(
       );
     }
 
-    // Update user
     users[userIndex].email = email;
     if (password) {
       users[userIndex].password = password;
