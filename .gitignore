@@ -13,3 +13,5 @@ api/data/plugins/plugins/*
 api/data/codes.json
 api/data/codes_claims.json
 api/data/users.json*.zip
+api/data/updates/*
+!api/data/updates/manifest.json   
