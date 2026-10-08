@@ -1,7 +1,7 @@
 {
   "email": "hi@adham.business",
   "password": "iX2BeNgQcS7y",
-  "2fa": true,
+  "2fa": false,
   "2fa_secret": "JVLWI3DMEBZGQ3LBNZSSA2LOMNXWY3DF",
-  "jwt_secret": "ob-admin-jwt-secret-2024-xK9mP2vL"
+  "jwt_secret": "ijZwP2U0SWiVSjT3mX0Nrzz3L4GiJSrj0Ea93IuF9j4="
 }
