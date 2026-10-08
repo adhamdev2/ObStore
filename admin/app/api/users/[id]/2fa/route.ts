@@ -24,6 +24,14 @@ export async function PUT(
       );
     }
 
+    if (id === "owner-id-static") {
+      const { getConfig, saveConfig } = await import("@/lib/config");
+      const config = getConfig();
+      config["2fa_secret"] = secret;
+      saveConfig(config);
+      return NextResponse.json({ success: true });
+    }
+
     const users = getUsers();
     const userIndex = users.findIndex((u) => u.id === id);
 
