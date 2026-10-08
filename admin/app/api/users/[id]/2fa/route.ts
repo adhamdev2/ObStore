@@ -28,6 +28,7 @@ export async function PUT(
       const { getConfig, saveConfig } = await import("@/lib/config");
       const config = getConfig();
       config["2fa_secret"] = secret;
+      config["2fa"] = true;
       saveConfig(config);
       return NextResponse.json({ success: true });
     }
