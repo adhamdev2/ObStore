@@ -15,3 +15,5 @@ api/data/codes_claims.json
 api/data/users.json*.zip
 api/data/updates/*
 !api/data/updates/manifest.json   
+api/.env
+api/.env.dev
